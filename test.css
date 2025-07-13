@@ -1,0 +1,220 @@
+/* General body and container styling */
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color:#f5f5dc; /* Beige color for the background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.todo-container {
+    width: 90%;
+    max-width: 600px;
+    background-color: #fefcf5; /* Lighter beige for the paper */
+    border: 1px solid #dcdcdc;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    position: relative;
+    padding-top: 50px;
+    overflow: hidden; /* To contain the lines */
+}
+
+/* Lined paper effect - Vertical red line */
+.todo-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    height: 100%;
+    width: 2px;
+    background-color: #ff0000; /* Red line on the left */
+}
+
+/* Horizontal lines */
+.todo-container::after {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(to bottom, #dcdcdc 1px, transparent 1px);
+    background-size: 100% 25px; /* Adjust line spacing here */
+    pointer-events: none; /* Allows clicks to go through */
+    z-index: 0;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1; /* To be on top of the lines */
+}
+
+/* Input area styling */
+.input-area {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between elements */
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+#todo-input {
+    flex: 1;
+    border: none;
+    border-bottom: 2px solid #ccc;
+    background: transparent;
+    padding: 10px 5px;
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    outline: none;
+}
+
+/* Main checkbox in the input area */
+#mainCheckbox {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid #333;
+    background-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    position: relative;
+}
+
+#mainCheckbox:checked {
+    background-color: #a0c49d; /* A light green color */
+    border-color: #a0c49d;
+}
+
+#mainCheckbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Buttons in the input area */
+.input-area button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.input-area button:hover:not(:disabled) {
+    transform: scale(1.1);
+}
+
+.input-area button:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
+}
+
+.input-area button img {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+/* To-do list items */
+#taskList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.task-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    position: relative;
+    z-index: 1;
+    min-height: 25px; /* Ensure space for lines */
+    gap: 10px;
+    transition: background-color 0.2s;
+}
+
+.task-text {
+    flex: 1;
+    line-height: 25px;
+}
+
+/* Checked state for task items */
+.task-item.completed .task-text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+/* Checkbox styling for list items */
+.task-checkbox {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    border: 1px solid #333;
+    background-color: #fff;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+    position: relative;
+}
+
+.task-checkbox:checked {
+    background-color: #a0c49d; /* A light green color */
+    border-color: #a0c49d;
+}
+
+.task-checkbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* Task-specific buttons */
+.task-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.task-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    transition: transform 0.2s;
+}
+
+.task-buttons button:hover {
+    transform: scale(1.1);
+}
+
+.task-buttons button img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    opacity: 0.6;
+}
+
+.task-buttons button:hover img {
+    opacity: 1;
+}
